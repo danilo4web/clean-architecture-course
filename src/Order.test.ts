@@ -1,0 +1,34 @@
+
+import Order from './Order';
+import Coupon from './Coupon';
+
+test("Should not make order with an invalid CPF", function () {
+    const cpf = "111.111.111-11";
+    expect(() => new Order(cpf)).toThrow(new Error("Invalid CPF"));
+});
+
+test("Shold make order with three items", function() {
+    const cpf = "778.278.412-36";
+    
+    const order = new Order(cpf);
+    order.addItem("Guitarra", 1000, 2);
+    order.addItem("Amplificador", 5000, 1);
+    order.addItem("Guitarra", 30, 3);
+
+    const total = order.getTotal();
+    expect(total).toBe(7090);
+});
+
+test("Shold make order with discount coupun", function() {
+    const cpf = "778.278.412-36";
+    
+    const order = new Order(cpf);
+    order.addItem("Guitarra", 1000, 2);
+    order.addItem("Amplificador", 5000, 1);
+    order.addItem("Guitarra", 30, 3);
+
+    order.addCoupon(new Coupon("VALE20", 20));
+    const total = order.getTotal();
+    expect(total).toBe(5672);
+});
+
