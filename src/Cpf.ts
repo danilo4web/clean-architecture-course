@@ -5,7 +5,6 @@ export default class Cpf {
     constructor (cpf: string) {
         if (!this.validate(cpf)) {
             throw new Error("Invalid CPF");
-
         }
     }
 
@@ -44,5 +43,5 @@ export default class Cpf {
 
     getCheckerDigit(cpf: string) {
         return cpf.slice(9);
-    }    
+    }
 }

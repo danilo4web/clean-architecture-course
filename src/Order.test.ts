@@ -7,7 +7,7 @@ test("Should not make order with an invalid CPF", function () {
     expect(() => new Order(cpf)).toThrow(new Error("Invalid CPF"));
 });
 
-test("Shold make order with three items", function() {
+test("Should make order with three items", function() {
     const cpf = "778.278.412-36";
     
     const order = new Order(cpf);
@@ -19,7 +19,7 @@ test("Shold make order with three items", function() {
     expect(total).toBe(7090);
 });
 
-test("Shold make order with discount coupun", function() {
+test("Should make order with discount coupon", function() {
     const cpf = "778.278.412-36";
     
     const order = new Order(cpf);

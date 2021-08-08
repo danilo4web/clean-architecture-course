@@ -20,7 +20,7 @@ export default class Order {
         this.coupon = coupon;
     }
 
-    getTotal() {
+    getTotal(): number {
         let total = 0;
         for (const orderItem of this.items) {
             total += orderItem.price * orderItem.quantity;
