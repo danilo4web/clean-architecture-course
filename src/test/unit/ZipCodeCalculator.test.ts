@@ -1,4 +1,4 @@
-import ZipcodeCalculatorAPI from "./ZipcodeCalculadorApi";
+import ZipcodeCalculatorAPI from "../../domain/gateway/ZipcodeCalculadorApi";
 
 test("Should calculate distance from start to destination zipcode", function() {
     const zipcodeCalculator = new ZipcodeCalculatorAPI();
