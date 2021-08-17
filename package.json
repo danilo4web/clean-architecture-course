@@ -6,11 +6,12 @@
   "scripts": {
     "tsc:init": "tsc --init",
     "build": "tsc",
-    "test": "tsc && jest --colors dist/"
+    "test": "tsc && jest --colors dist/ --forceExit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "pg-promise": "^10.11.0",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
