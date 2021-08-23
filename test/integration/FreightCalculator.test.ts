@@ -1,5 +1,5 @@
-import FreightCalculator from "../../domain/service/FreightCalculator";
-import Item from "../../domain/entity/Item";
+import FreightCalculator from "../../src/domain/service/FreightCalculator";
+import Item from "../../src/domain/entity/Item";
 
 test("Should calculate amplificador freight", function () {
     const item = new Item("1", "Guitarra", 1000, 100, 50, 15, 3);

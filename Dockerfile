@@ -7,7 +7,8 @@ COPY package*.json ./
 RUN npm install \
     npm install typescript --save \
     npm install jest --save-dev \
-    npm install @types/jest --save-dev
+    npm install @types/jest --save-dev \
+    npm install pg-promise --save
 
 COPY . .
 
