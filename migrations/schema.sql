@@ -3,9 +3,9 @@ create schema ccca;
 create table ccca.item (
     id serial,
     description text,
-    price numeric
-    height integer
+    price numeric,
+    height integer,
     width integer,
-    lenght integer,
+    length integer,
     weight integer
 );
