@@ -7,11 +7,17 @@ export default class Order {
     items: OrderItem[];
     coupon: Coupon | undefined;
     freight: number;
+    code: string;
+    issueDate: Date;
+    sequence: number;
 
-    constructor (cpf: string) {
+    constructor (cpf: string, issueDate: Date = new Date(), sequence: number = 1) {
         this.cpf = new Cpf(cpf);
         this.items = [];
         this.freight = 0;
+        this.issueDate = issueDate;
+        this.sequence = sequence;
+        this.code = `${this.issueDate.getFullYear()}${(new String(sequence)).padStart(8, "0")}`;
     }
 
     addItem(id: string, price: number, quantity: number) {
