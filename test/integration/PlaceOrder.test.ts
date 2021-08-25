@@ -68,3 +68,25 @@ test("Should make an Order with freight calculate", async function () {
     const output = await placeOrder.execute(input);
     expect(output.freight).toBe(310);
 })
+
+test("Should make an Order with code calculate", async function () {
+    const input = new PlaceOrderInput({
+        cpf: "778.278.412-36",
+        items: [
+            {id: "1", quantity: 2},
+            {id: "2", quantity: 1},
+            {id: "3", quantity: 3}
+        ],
+        issueDate: new Date("2020-10-10"),
+        coupon: "VALE20_EXPIRED",
+        zipcode: "11.111.111"
+    })
+
+    const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
+    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const couponRepository = new CouponRepositoryMemory();
+    const orderRepository = new OrderRepositoryMemory();
+    const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
+    const output = await placeOrder.execute(input);
+    expect(output.code.value).toBe("202000000001");
+})
