@@ -19,7 +19,7 @@ test("Should make an Order", async function () {
     })
 
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
-    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
     const orderRepository = new OrderRepositoryMemory();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
@@ -40,7 +40,7 @@ test("Should make an Order with expired coupon", async function () {
     })
 
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
-    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
     const orderRepository = new OrderRepositoryMemory();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
@@ -61,7 +61,7 @@ test("Should make an Order with freight calculate", async function () {
     })
 
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
-    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
     const orderRepository = new OrderRepositoryMemory();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
@@ -83,7 +83,7 @@ test("Should make an Order with code calculate", async function () {
     })
 
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
-    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
     const orderRepository = new OrderRepositoryMemory();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);

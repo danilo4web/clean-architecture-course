@@ -2,9 +2,10 @@ import pgp from "pg-promise";
 import Database from "./Database";
 
 export default class PgPromisseDatabase implements Database {
-    pgp: any;
+    private pgp: any;
+    static instance: PgPromisseDatabase;
 
-    constructor() {
+    private constructor() {
         const config = {
             user: 'postgres',
             password: '123456',
@@ -13,6 +14,14 @@ export default class PgPromisseDatabase implements Database {
             database: 'app'
         }
         this.pgp = pgp()(`postgres://${config.user}:${config.password}@${config.host}:${config.port}/${config.database}`);
+    }
+
+    static getInstance(): PgPromisseDatabase {
+        if (!PgPromisseDatabase.instance) {
+            PgPromisseDatabase.instance = new PgPromisseDatabase();
+        }
+
+        return PgPromisseDatabase.instance;
     }
 
     many(query: string, parameters: any): any {

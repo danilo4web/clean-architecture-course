@@ -20,7 +20,7 @@ test("Should find an Order", async function () {
     })
 
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
-    const itemRepository = new ItemRepositoryDatabase(new PgPromisseDatabase());
+    const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
     const orderRepository = new OrderRepositoryMemory();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
