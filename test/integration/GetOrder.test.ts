@@ -6,6 +6,7 @@ import PlaceOrderInput from '../../src/application/PlaceOrderInput';
 import ItemRepositoryDatabase from '../../src/infra/repository/database/ItemRepositoryDatabase';
 import PgPromisseDatabase from '../../src/infra/database/PgPromisseDatabase';
 import GetOrder from "../../src/application/GetOrder";
+import OrderRepositoryDatabase from "../../src/infra/repository/database/OrderRepositoryDatabase";
 
 test("Should find an Order", async function () {
     const input = new PlaceOrderInput({
@@ -22,7 +23,8 @@ test("Should find an Order", async function () {
     const zipCodeCalculator = new ZipCodeCalculatorAPIMemory();
     const itemRepository = new ItemRepositoryDatabase(PgPromisseDatabase.getInstance());
     const couponRepository = new CouponRepositoryMemory();
-    const orderRepository = new OrderRepositoryMemory();
+    const orderRepository = new OrderRepositoryDatabase(PgPromisseDatabase.getInstance());
+    await orderRepository.clean();
     const placeOrder = new PlaceOrder(zipCodeCalculator, itemRepository, couponRepository, orderRepository);
     const output = await placeOrder.execute(input);
     const getOrder = new GetOrder(itemRepository, couponRepository, orderRepository);

@@ -1,6 +1,5 @@
 import Order from "../../../domain/entity/Order";
 import OrderRepository from "../../../domain/repository/OrderRepository";
-import OrderCode from "../../../domain/entity/OrderCode";
 
 export default class OrderRepositoryMemory implements OrderRepository {
     orders: Order[];
@@ -9,17 +8,21 @@ export default class OrderRepositoryMemory implements OrderRepository {
         this.orders = [];
     }
 
-    save(order: Order): void {
+    async save(order: Order): Promise<void> {
         this.orders.push(order)
     }
 
-    get(code: string): Order {
+    async get(code: string): Promise<Order> {
         const order = this.orders.find(order => order.code.value === code);
         if (!order) throw new Error("order not found");
-        return order;
+        return Promise.resolve(order);
     }
 
-    count(): number {
-        return this.orders.length;
+    async count(): Promise<number> {
+        return Promise.resolve(this.orders.length);
+    }
+
+    async clean(): Promise<void> {
+        this.orders = [];
     }
 }

@@ -31,4 +31,8 @@ export default class PgPromisseDatabase implements Database {
     one(query: string, parameters: any): any {
         return this.pgp.oneOrNone(query, parameters);
     }
+
+    none(query: string, parameters: any): void {
+        return this.pgp.none(query, parameters);
+    }
 }
