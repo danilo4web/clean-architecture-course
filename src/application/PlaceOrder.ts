@@ -26,7 +26,7 @@ export default class PlaceOrder {
     }
 
     async execute (input: PlaceOrderInput): Promise<PlaceOrderOutput> {
-        const sequence = this.orderRepository.count() + 1;
+        const sequence = await this.orderRepository.count() + 1;
         const order = new Order(input.cpf, input.issueDate, sequence);
         const distance = this.zipcodeCalculator.calculate(input.zipcode, "99.999-999");
 
@@ -38,13 +38,13 @@ export default class PlaceOrder {
             order.freight += FreightCalculator.calculate(distance, item) * orderItem.quantity;
         }
         if (input.coupon) {
-            const coupon = this.couponRepository.getByCode(input.coupon);
+            const coupon = await this.couponRepository.getByCode(input.coupon);
             if (coupon) {
                 order.addCoupon(coupon);
             }
         }
         const total = order.getTotal();
-        this.orderRepository.save(order);
+        await this.orderRepository.save(order);
         return new PlaceOrderOutput({
             code: order.code,
             total,
